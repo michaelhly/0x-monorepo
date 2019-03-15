@@ -59,6 +59,10 @@ contract MixinSignatureValidator is
         if (signatureType == SignatureType.Illegal) {
             revert("SIGNATURE_ILLEGAL");
 
+        // Always invalid signature.
+        } else if (signatureType == SignatureType.Invalid) {
+            return address(0);
+        
         // Signature using EIP712
         } else if (signatureType == SignatureType.EIP712) {
             require(
