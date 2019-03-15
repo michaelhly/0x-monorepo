@@ -1,8 +1,8 @@
 import { generatePseudoRandomSalt } from '@0x/order-utils';
-import { SignedZeroExTransaction } from '@0x/types';
+import { SignatureType, SignedZeroExTransaction } from '@0x/types';
 import * as ethUtil from 'ethereumjs-util';
 
-import { CoordinatorSignatureType, hashUtils, signingUtils } from './index';
+import { hashUtils, signingUtils } from './index';
 
 export class CoordinatorTransactionFactory {
     private readonly _signerBuff: Buffer;
@@ -15,7 +15,7 @@ export class CoordinatorTransactionFactory {
     }
     public newSignedCoordinatorTransaction(
         data: string,
-        signatureType: CoordinatorSignatureType = CoordinatorSignatureType.EthSign,
+        signatureType: SignatureType = SignatureType.EthSign,
     ): SignedZeroExTransaction {
         const transaction = {
             verifyingContractAddress: this._verifyingContractAddress,

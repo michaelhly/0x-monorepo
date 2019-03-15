@@ -1,8 +1,8 @@
-import { SignedZeroExTransaction } from '@0x/types';
+import { SignatureType, SignedZeroExTransaction } from '@0x/types';
 import { BigNumber } from '@0x/utils';
 import * as ethUtil from 'ethereumjs-util';
 
-import { CoordinatorSignatureType, hashUtils, SignedCoordinatorApproval, signingUtils } from './index';
+import { hashUtils, SignedCoordinatorApproval, signingUtils } from './index';
 
 export class ApprovalFactory {
     private readonly _privateKey: Buffer;
@@ -15,7 +15,7 @@ export class ApprovalFactory {
         transaction: SignedZeroExTransaction,
         txOrigin: string,
         approvalExpirationTimeSeconds: BigNumber,
-        signatureType: CoordinatorSignatureType = CoordinatorSignatureType.EthSign,
+        signatureType: SignatureType = SignatureType.EthSign,
     ): SignedCoordinatorApproval {
         const coordinatorTransaction = {
             ...transaction,
